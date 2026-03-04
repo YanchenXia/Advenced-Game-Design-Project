@@ -1,6 +1,6 @@
 # Excluded folders
 /.vs/
-/Temp
+Temp/
 
 [Bb]in/
 [Bb]uild/
@@ -48,4 +48,5 @@ sysinfo.txt
 AssemblyInfo.cs
 
 # Anything else
+
 Thumbs.db
