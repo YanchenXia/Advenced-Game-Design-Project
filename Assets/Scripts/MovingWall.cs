@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MovingWall : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 1f;
     private bool isMoving = false;
 
     public Timer timer; 

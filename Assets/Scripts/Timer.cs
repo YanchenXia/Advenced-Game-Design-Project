@@ -5,7 +5,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [Header("Timer Settings")]
-    public float startTime = 60f;
+    public float startTime = 30f;
     private float currentTime;
 
     [Header("UI References")]
