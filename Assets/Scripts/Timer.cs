@@ -68,6 +68,6 @@ public class Timer : MonoBehaviour
 
     public void TriggerGameOver()
     {
-    GameOver();
+       GameOver();
     }
 }
