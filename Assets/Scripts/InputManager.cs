@@ -10,8 +10,10 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor motor;
     private PlayerLook looker;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
     void Awake()
-    {
+    {  
         playerInput = new PlayerInput();
         onFoot = playerInput.Player;
 
@@ -22,14 +24,19 @@ public class InputManager : MonoBehaviour
         onFoot.Crouch.performed += ctx => motor.Crouch();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        motor.ProcessMove(onFoot.Move.ReadValue<Vector2>());
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        moveInput = onFoot.Move.ReadValue<Vector2>();
+        lookInput = onFoot.Look.ReadValue<Vector2>();
+
+        motor.ProcessMove(moveInput);
     }
 
     void LateUpdate()
     {
-        looker.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        looker.ProcessLook(lookInput);
     }
 
     private void OnEnable()
