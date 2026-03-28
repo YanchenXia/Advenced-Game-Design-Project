@@ -12,6 +12,15 @@ public class InputManager : MonoBehaviour
     private PlayerLook looker;
     private Vector2 moveInput;
     private Vector2 lookInput;
+
+    private bool jumpPressed;
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void Awake()
     {  
         playerInput = new PlayerInput();
@@ -20,18 +29,21 @@ public class InputManager : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         looker = GetComponent<PlayerLook>();
 
-        onFoot.Jump.performed += ctx => motor.Jump();
+        onFoot.Jump.performed += ctx => jumpPressed = true;
         onFoot.Crouch.performed += ctx => motor.Crouch();
     }
 
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         moveInput = onFoot.Move.ReadValue<Vector2>();
         lookInput = onFoot.Look.ReadValue<Vector2>();
 
         motor.ProcessMove(moveInput);
+        if (jumpPressed)
+        {
+            motor.Jump();
+            jumpPressed = false;
+        }
     }
 
     void LateUpdate()
