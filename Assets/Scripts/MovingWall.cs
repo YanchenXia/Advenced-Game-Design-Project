@@ -20,6 +20,12 @@ public class MovingWall : MonoBehaviour
         isMoving = true;
     }
 
+    public void StopWall()
+    {
+        isMoving = false;
+        gameObject.SetActive(false);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
