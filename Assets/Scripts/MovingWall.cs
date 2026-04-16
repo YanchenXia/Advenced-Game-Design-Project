@@ -7,11 +7,6 @@ public class MovingWall : MonoBehaviour
 
     public Timer timer;
 
-    void Start()
-    {
-        StartWall();
-    }
-
     void Update()
     {
         if (!isMoving) return;
@@ -34,8 +29,6 @@ public class MovingWall : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player caught by wall!");
-
             if (timer != null)
                 timer.TriggerGameOver();
         }
