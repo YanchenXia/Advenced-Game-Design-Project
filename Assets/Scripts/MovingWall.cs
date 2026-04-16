@@ -5,14 +5,18 @@ public class MovingWall : MonoBehaviour
     public float speed = 1f;
     private bool isMoving = false;
 
-    public Timer timer; 
+    public Timer timer;
+
+    void Start()
+    {
+        StartWall();
+    }
 
     void Update()
     {
-        if (!isMoving)
-            return;
+        if (!isMoving) return;
 
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 
     public void StartWall()
@@ -33,7 +37,7 @@ public class MovingWall : MonoBehaviour
             Debug.Log("Player caught by wall!");
 
             if (timer != null)
-                timer.TriggerGameOver(); 
+                timer.TriggerGameOver();
         }
     }
 }

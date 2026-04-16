@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class ButtonTrigger : MonoBehaviour
 {
-    public Door door;
     public MovingWall wall;
-
     public bool isCorrectButton = false;
 
     private Renderer rend;
+    private bool pressed = false;
 
     void Start()
     {
@@ -16,19 +15,17 @@ public class ButtonTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !pressed)
         {
-            Debug.Log("Button pressed!");
+            pressed = true;
 
             if (isCorrectButton)
             {
                 Debug.Log("Correct button!");
 
-                if (rend != null)
-                    rend.material.color = Color.green;
+                rend.material.color = Color.green;
 
-                if (door != null)
-                    door.OpenDoor();
+                GameManager.instance.AddCorrectButton();
 
                 if (wall != null)
                     wall.StopWall();
@@ -37,8 +34,7 @@ public class ButtonTrigger : MonoBehaviour
             {
                 Debug.Log("Wrong button!");
 
-                if (rend != null)
-                    rend.material.color = Color.red;
+                rend.material.color = Color.red;
             }
         }
     }
