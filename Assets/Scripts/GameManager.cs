@@ -22,4 +22,9 @@ public class GameManager : MonoBehaviour
     {
         return correctButtonsPressed >= requiredButtons;
     }
+
+    public void RegisterCorrectButton()
+    {
+        AddCorrectButton();
+    }
 }

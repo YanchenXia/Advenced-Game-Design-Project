@@ -15,27 +15,27 @@ public class ButtonTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !pressed)
+        if (!other.CompareTag("Player") || pressed) return;
+
+        pressed = true;
+
+        if (isCorrectButton)
         {
-            pressed = true;
+            Debug.Log("Correct button!");
 
-            if (isCorrectButton)
-            {
-                Debug.Log("Correct button!");
+            rend.material.color = Color.green;
 
-                rend.material.color = Color.green;
+            GameManager.instance.RegisterCorrectButton();
 
-                GameManager.instance.AddCorrectButton();
+            if (wall != null)
+                wall.StopWall();
+        }
+        else
+        {
+            Debug.Log("Wrong button!");
 
-                if (wall != null)
-                    wall.StopWall();
-            }
-            else
-            {
-                Debug.Log("Wrong button!");
+            rend.material.color = Color.red;
 
-                rend.material.color = Color.red;
-            }
         }
     }
 }
