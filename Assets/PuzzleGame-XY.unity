@@ -1151,6 +1151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTrigger
   door: {fileID: 1162791322}
+  wall: {fileID: 0}
+  isCorrectButton: 1
 --- !u!54 &664472624
 Rigidbody:
   m_ObjectHideFlags: 0
