@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    //Regular movement named onFoot since anti gravity might require a different input system.
-    // Remove the this note if that ends up not being the case.
     private PlayerInput.PlayerActions onFoot;
 
     private PlayerMotor motor;

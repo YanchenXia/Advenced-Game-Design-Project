@@ -1,8 +1,13 @@
 using System;
+
 using NUnit.Framework;
+
 using UnityEngine;
 
+
+
 public class PlayerMotor : MonoBehaviour
+
 {
     // Calls/References
     public Transform orientation;
@@ -19,7 +24,10 @@ public class PlayerMotor : MonoBehaviour
     public float jumpHeight = 2.3f;
     public float fallMultiplier = 1.6f;
 
-    //Crouch variables
+
+
+    //crouch variables
+
     public bool crouching = false;
     public float crouchTimer = 0f;
     public float crouchLerpSpeed = 6f;
@@ -38,18 +46,25 @@ public class PlayerMotor : MonoBehaviour
     // Awake is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+
         controller = GetComponent<CharacterController>();
+
     }
 
     // Simplified to prevent confusion
     void Update()
+
     {
         controlGravity();
         controlCrouch();
     }
 
-    //Recieve inputs from input manager script and applys to character controller
+
+
+    //get inputs from input manager
+
     public void ProcessMove(Vector2 input)
+
     {
         Vector3 forward = orientation.forward;
         Vector3 right = orientation.right;
@@ -107,21 +122,34 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(finalVelocity * Time.deltaTime);
     }
 
+
+
     public void Jump()
+
     {
+
         if (isGrounded)
+
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
             verticalVelocity *= 1.1f;
         }
+
     }
 
+
+
     public void Crouch()
+
     {
+
         crouching = !crouching;
+
         crouchTimer = 0;
+
         lerpCrouch = true;
+
     }
 
     private void controlCrouch()
@@ -198,3 +226,4 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 }
+
