@@ -3353,7 +3353,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 614ab82509766cd47875e110a66b70dd, type: 2}
     - target: {fileID: 1389544235171321432, guid: 5f6d40383ab6b264796e42bddd52523f, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerWGrapple
       objectReference: {fileID: 0}
     - target: {fileID: 3692575714710963862, guid: 5f6d40383ab6b264796e42bddd52523f, type: 3}
       propertyPath: m_LocalPosition.y
