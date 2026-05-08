@@ -28,4 +28,11 @@ public class PlayerLook : MonoBehaviour
       The fixes for this were to add a proper horizontal rotation plus adding a cursor lock in input manager.
      ZS
     */
+
+    //ui sensitivity customization
+    public void ChangeSensitivity(float newSensitivity)
+    {
+        xSensitivity = newSensitivity;
+        ySensitivity = newSensitivity;
+    }
 }
