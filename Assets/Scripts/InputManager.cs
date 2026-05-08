@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor motor;
     private PlayerLook looker;
+    private Grappling grapple;
     private Vector2 moveInput;
     private Vector2 lookInput;
 
@@ -28,9 +29,12 @@ public class InputManager : MonoBehaviour
 
         motor = GetComponent<PlayerMotor>();
         looker = GetComponent<PlayerLook>();
+        grapple = GetComponent<Grappling>();
 
         onFoot.Jump.performed += ctx => jumpPressed = true;
         onFoot.Crouch.performed += ctx => motor.Crouch();
+        onFoot.Grapple.performed += ctx => grapple.StartGrapple();
+        onFoot.Grapple.canceled += ctx => grapple.StopGrapple();
     }
 
     void Update()

@@ -25,6 +25,12 @@ public class PlayerMotor : MonoBehaviour
     public float crouchLerpSpeed = 6f;
     public bool lerpCrouch = false;
 
+    //Stopping movement for grapple
+    private bool grappling;
+    private Vector3 grappleVelocity;
+    private bool exitingGrapple;
+    private float exitTimer;
+
     private CharacterController controller;
     private Vector3 currentVelocity;
     private float verticalVelocity;
@@ -79,7 +85,16 @@ public class PlayerMotor : MonoBehaviour
             currentVelocity = Vector3.zero;
         }
 
-        Vector3 finalVelocity = currentVelocity + Vector3.up * verticalVelocity;
+        Vector3 finalVelocity;
+
+        if (grappling)
+        {
+            finalVelocity = grappleVelocity;
+        }
+        else
+        {
+            finalVelocity = currentVelocity + Vector3.up * verticalVelocity;
+        }
 
         Vector3 flatVel = new Vector3(finalVelocity.x, 0f, finalVelocity.z);
 
@@ -109,19 +124,6 @@ public class PlayerMotor : MonoBehaviour
         lerpCrouch = true;
     }
 
-    private void controlGravity()
-    {
-        if (isGrounded && verticalVelocity  < 0)
-        {
-            verticalVelocity = -2f;
-        }
-        verticalVelocity += gravity * Time.deltaTime;
-        if (verticalVelocity < 0f)
-        {
-            verticalVelocity += gravity * (fallMultiplier - 1f) * Time.deltaTime;
-        }
-    }
-
     private void controlCrouch()
     {
         if (!lerpCrouch) return;
@@ -136,6 +138,63 @@ public class PlayerMotor : MonoBehaviour
         if (p >= 1f)
         {
             lerpCrouch = false;
+        }
+    }
+
+    //Used for grapple pull
+    public void JumpToPosition(Vector3 targetPosition, float speed)
+    {
+        grappling = true;
+
+        Vector3 dir = (targetPosition - transform.position).normalized;
+        grappleVelocity = dir * speed;
+    }
+    public void StopGrappleMovement()
+    {
+        grappling = false;
+
+        exitingGrapple = true;
+        exitTimer = 0.25f;
+
+        // preserve momentum
+        currentVelocity += new Vector3(grappleVelocity.x, 0f, grappleVelocity.z) * 0.6f;
+
+        verticalVelocity += 2.5f;
+    }
+
+    private void controlGravity()
+    {
+        //Prevents gravity from slinging player down after grappling
+        if (grappling)
+        {
+            if (verticalVelocity < -2f)
+            {
+                verticalVelocity = -2f;
+            }
+
+            return;
+        }
+       float gMultiplier = 1f;
+
+        if (exitingGrapple)
+        {
+            gMultiplier = 0.4f;
+
+            exitTimer -= Time.deltaTime;
+            if (exitTimer <= 0f)
+                exitingGrapple = false;
+        }
+
+        if (controller.isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f;
+        }
+
+        verticalVelocity += gravity * gMultiplier * Time.deltaTime;
+
+        if (verticalVelocity < 0f)
+        {
+            verticalVelocity += gravity * (fallMultiplier - 1f) * gMultiplier * Time.deltaTime;
         }
     }
 }
