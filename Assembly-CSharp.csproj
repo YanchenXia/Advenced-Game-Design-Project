@@ -67,8 +67,10 @@
     <Compile Include="Assets\Scripts\CheckpointPad.cs" />
     <Compile Include="Assets\Inputs\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
+    <Compile Include="Assets\Scripts\StartZone.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Restart.cs" />
     <Compile Include="Assets\Scripts\BlockButton.cs" />
     <Compile Include="Assets\Scripts\MovingWall.cs" />
