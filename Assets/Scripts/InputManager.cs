@@ -8,26 +8,49 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor motor;
     private PlayerLook looker;
-    void Awake()
+    private Grappling grapple;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+
+    private bool jumpPressed;
+
+    void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void Awake()
+    {  
         playerInput = new PlayerInput();
         onFoot = playerInput.Player;
 
         motor = GetComponent<PlayerMotor>();
         looker = GetComponent<PlayerLook>();
+        grapple = GetComponent<Grappling>();
 
-        onFoot.Jump.performed += ctx => motor.Jump();
+        onFoot.Jump.performed += ctx => jumpPressed = true;
         onFoot.Crouch.performed += ctx => motor.Crouch();
+        onFoot.Grapple.performed += ctx => grapple.StartGrapple();
+        onFoot.Grapple.canceled += ctx => grapple.StopGrapple();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        motor.ProcessMove(onFoot.Move.ReadValue<Vector2>());
+        moveInput = onFoot.Move.ReadValue<Vector2>();
+        lookInput = onFoot.Look.ReadValue<Vector2>();
+
+        motor.ProcessMove(moveInput);
+        if (jumpPressed)
+        {
+            motor.Jump();
+            jumpPressed = false;
+        }
     }
 
     void LateUpdate()
     {
-        looker.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        looker.ProcessLook(lookInput);
     }
 
     private void OnEnable()
