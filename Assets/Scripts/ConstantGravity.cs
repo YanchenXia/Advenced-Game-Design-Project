@@ -17,7 +17,7 @@ public class ConstantGravity : MonoBehaviour
     //makes pushing objects smoother
     void FixedUpdate()
     {
-        // Constantly push the block straight down on the Y axis
+        //push down y axis
         rb.AddForce(new Vector3(0, downwardForce, 0), ForceMode.Acceleration);
     }
 }

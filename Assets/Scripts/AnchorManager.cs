@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class AnchorManager : MonoBehaviour
 {
-    //Anchorable blocks start anchored
+    //anchorable blocks start anchored
     private bool isAnchored = true;
 
-    //Start levl
+    //start level
     void Start()
     {
-        //Find all anchorable blocks
+        //find all anchorable objects
         GameObject[] puzzleBlocks = GameObject.FindGameObjectsWithTag("AnchorBlock");
 
         foreach (GameObject block in puzzleBlocks)
@@ -27,7 +27,7 @@ public class AnchorManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            //unfreeze after F is clicked
+            //unfreeze after F is pressed
             isAnchored = !isAnchored;
 
             GameObject[] puzzleBlocks = GameObject.FindGameObjectsWithTag("AnchorBlock");

@@ -24,7 +24,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-    //Crouch variables
+    //crouch variables
 
     public bool crouching = false;
 
@@ -32,9 +32,6 @@ public class PlayerMotor : MonoBehaviour
 
     public bool lerpCrouch = false;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
 
@@ -46,8 +43,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-    // Update is called once per frame
-
+    //called once per frame
     void Update()
 
     {
@@ -90,7 +86,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-    //Recieve inputs from input manager script and applys to character controller
+    //get inputs from input manager
 
     public void ProcessMove(Vector2 input)
 

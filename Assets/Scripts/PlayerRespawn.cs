@@ -23,9 +23,8 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
-    void DieAndRespawn()
+    public void DieAndRespawn()
     {
-        Debug.Log("Player touched a Hazard! Respawning");
         CharacterController cc = GetComponent<CharacterController>();
         
         if (cc != null) cc.enabled = false; //turn physics off
@@ -36,4 +35,11 @@ public class PlayerRespawn : MonoBehaviour
 
         if (cc != null) cc.enabled = true; //turn physics back on
     }
+
+    //checkpoint functionality
+    public void SetRespawnPoint(Transform newPoint)
+    {
+        respawnPoint = newPoint;
+    }
 }
+

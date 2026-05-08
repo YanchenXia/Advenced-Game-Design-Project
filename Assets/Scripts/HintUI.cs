@@ -8,7 +8,7 @@ public class HintUI : MonoBehaviour
 
     void Start()
     {
-        //Remove text
+        //remove text
         if (hintTextDisplay != null) hintTextDisplay.text = "";
     }
 

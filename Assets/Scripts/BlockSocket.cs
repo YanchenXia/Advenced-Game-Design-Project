@@ -25,7 +25,6 @@ public class BlockSocket : MonoBehaviour
             
             if (rb != null)
             {
-                Debug.Log("SUCCESS! A valid pool block snapped into place.");
                 rb.position = exactSnapPoint.position;
                 rb.rotation = exactSnapPoint.rotation;
                 
@@ -39,12 +38,11 @@ public class BlockSocket : MonoBehaviour
         }
     }
 
-    // 3. If the player pulls the block OUT of the socket (using the tether), unlock it!
+    //unlock if taken out of socket
     void OnTriggerExit(Collider other)
     {
         if (currentlySnappedBlock != null && other.attachedRigidbody == currentlySnappedBlock)
         {
-            Debug.Log("Socket is empty again!");
             currentlySnappedBlock = null; 
         }
     }

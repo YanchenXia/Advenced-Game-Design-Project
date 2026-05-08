@@ -26,6 +26,12 @@ public class CustomPlayerController : MonoBehaviour
     private float crouchTimer = 0f;
     private bool lerpCrouch = false;
 
+    [Header("Keybinds")]
+    public KeyCode gravityKey = KeyCode.G;
+    public KeyCode freezeKey = KeyCode.F;
+    public KeyCode interactKey = KeyCode.R;
+    public KeyCode crouchKey = KeyCode.C;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -44,6 +50,8 @@ public class CustomPlayerController : MonoBehaviour
 
     void Update()
     {
+        //if paused take no mouse input
+        if (Time.timeScale == 0f) return;
         //mouse movement
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -54,20 +62,20 @@ public class CustomPlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         //gravity flip (G)
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(gravityKey))
         {
             Physics.gravity = -Physics.gravity;
             if (uiManager != null) uiManager.ToggleGravityText();
         }
 
         //change freeze/anchor state (F)
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(freezeKey))
         {
             if (uiManager != null) uiManager.ToggleFreezeText();
         }
 
         //raycast for interacting with hints (r)
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(interactKey)) 
         {
             RaycastHit hit;
             //make laser from center of character
@@ -84,7 +92,7 @@ public class CustomPlayerController : MonoBehaviour
         }
 
         //crouch (C or CTRL)
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(crouchKey))
         {
             crouching = !crouching;
             crouchTimer = 0;
@@ -126,7 +134,7 @@ public class CustomPlayerController : MonoBehaviour
         controller.Move(move * currentSpeed * Time.deltaTime);
 
         //player gravity and jumping
-        if (Input.GetButtonDown("Jump") && isGrounded && !crouching)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * playerGravity);
         }

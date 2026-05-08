@@ -78,4 +78,14 @@ public class BlockButton : MonoBehaviour
         if (buttonTop != null) buttonTop.localPosition = originalPosition;
         if (buttonRenderer != null) buttonRenderer.material.color = originalColor;
     }
+
+    public void ForceReset()
+    {
+        //reset and unlock
+        blocksOnButton = 0;
+        isLocked = false;
+
+        //close doors and physically pop back up
+        ReleaseButton();
+    }
 }

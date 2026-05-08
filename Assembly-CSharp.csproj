@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\GravityUI.cs" />
     <Compile Include="Assets\Scripts\HintUI.cs" />
     <Compile Include="Assets\Scripts\ConstantGravity.cs" />
+    <Compile Include="Assets\Scripts\CheckpointPad.cs" />
     <Compile Include="Assets\Inputs\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\AntiGravity.cs" />
     <Compile Include="Assets\Scripts\Win.cs" />
+    <Compile Include="Assets\Scripts\PauseMenuManager.cs" />
+    <Compile Include="Assets\Scripts\ResetableBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

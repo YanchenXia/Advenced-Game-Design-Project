@@ -8,7 +8,7 @@ public class ButtonTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Button pressed!");
+            Debug.Log("button pressed");
 
             if (door != null)
             {
@@ -16,7 +16,7 @@ public class ButtonTrigger : MonoBehaviour
             }
             else
             {
-                Debug.Log("Door not assigned!");
+                Debug.Log("door not assigned");
             }
         }
     }
