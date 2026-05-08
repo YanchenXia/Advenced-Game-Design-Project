@@ -35,7 +35,6 @@ public class ButtonTrigger : MonoBehaviour
             Debug.Log("Wrong button!");
 
             rend.material.color = Color.red;
-
         }
     }
 }

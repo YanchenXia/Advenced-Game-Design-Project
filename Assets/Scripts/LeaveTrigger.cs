@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class StartTimerOnExit : MonoBehaviour
 {
-    public Timer timerScript; // Drag your Timer GameObject here
+    public Timer timerScript;
 
     void OnTriggerExit(Collider other)
     {
-        // Check if the player leaves
+        //check if player leaves
         if (other.CompareTag("Player"))
         {
-            timerScript.StartTimer(); // start the timer
-            gameObject.SetActive(false); // optional: disable trigger
+            timerScript.StartTimer(); //start timer
+            gameObject.SetActive(false); //disable trigger
         }
     }
 }
