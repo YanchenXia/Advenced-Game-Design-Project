@@ -1,10 +1,17 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class FinalDoor : MonoBehaviour
 {
-    public void OpenDoor()
+    public void TryOpen()
     {
-        Debug.Log("Door opened!");
-        gameObject.SetActive(false);
+        if (GameManager.instance.CanOpenDoor())
+        {
+            Debug.Log("Door opened!");
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Need more correct buttons!");
+        }
     }
 }

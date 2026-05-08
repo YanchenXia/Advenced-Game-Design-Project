@@ -2,22 +2,39 @@ using UnityEngine;
 
 public class ButtonTrigger : MonoBehaviour
 {
-    public Door door;
+    public MovingWall wall;
+    public bool isCorrectButton = false;
+
+    private Renderer rend;
+    private bool pressed = false;
+
+    void Start()
+    {
+        rend = GetComponent<Renderer>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("button pressed");
+        if (!other.CompareTag("Player") || pressed) return;
 
-            if (door != null)
-            {
-                door.OpenDoor();
-            }
-            else
-            {
-                Debug.Log("door not assigned");
-            }
+        pressed = true;
+
+        if (isCorrectButton)
+        {
+            Debug.Log("Correct button!");
+
+            rend.material.color = Color.green;
+
+            GameManager.instance.RegisterCorrectButton();
+
+            if (wall != null)
+                wall.StopWall();
+        }
+        else
+        {
+            Debug.Log("Wrong button!");
+
+            rend.material.color = Color.red;
         }
     }
 }
