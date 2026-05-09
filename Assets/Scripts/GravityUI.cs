@@ -5,36 +5,31 @@ public class GravityUI : MonoBehaviour
 {
     public TextMeshProUGUI statusText;
     
-    private bool isGravityFlipped = false;
-    private bool isFreezeEnabled = false;
+    
+    public CustomPlayerController player; 
 
     void Start()
     {
+        
         UpdateDisplay();
     }
 
-    public void ToggleGravityText()
+    void Update()
     {
-        isGravityFlipped = !isGravityFlipped;
-        UpdateDisplay();
-    }
-
-    public void ToggleFreezeText()
-    {
-        isFreezeEnabled = !isFreezeEnabled;
         UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
-        if (statusText != null)
-        {
-            //displays gravity state
-            string gravState = isGravityFlipped ? "<color=green>ENABLED</color>" : "<color=red>DISABLED</color>";
-            //displays freeze state
-            string freezeState = isFreezeEnabled ? "<color=red>DISABLED</color>" : "<color=green>ENABLED</color>";
+        
+        if (player == null || statusText == null) return;
 
-            statusText.text = $"GRAVITY FLIP: {gravState}\nFREEZE: {freezeState}";
-        }
+        bool grav = player.isGravityFlipped;
+        bool freeze = player.isFreezeEnabled;
+
+        string gravState = grav ? "<color=green>ENABLED</color>" : "<color=red>DISABLED</color>";
+        string freezeState = freeze ? "<color=red>DISABLED</color>" : "<color=green>ENABLED</color>";
+
+        statusText.text = $"GRAVITY FLIP: {gravState}\nFREEZE: {freezeState}";
     }
 }

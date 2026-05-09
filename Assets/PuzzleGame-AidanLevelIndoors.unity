@@ -12490,6 +12490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityUI
   statusText: {fileID: 0}
+  player: {fileID: 0}
 --- !u!43 &436153097
 Mesh:
   m_ObjectHideFlags: 0
@@ -12680,9 +12681,9 @@ GameObject:
   - component: {fileID: 443054831}
   - component: {fileID: 443054830}
   - component: {fileID: 443054829}
-  - component: {fileID: 443054833}
   - component: {fileID: 443054836}
   - component: {fileID: 443054835}
+  - component: {fileID: 443054837}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12778,19 +12779,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &443054833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443054828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81bb723134566747b0bb8231e404bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GravityUI
-  statusText: {fileID: 429666390}
 --- !u!114 &443054835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12829,6 +12817,20 @@ MonoBehaviour:
   timerText: {fileID: 1809820385}
   gameOverPanel: {fileID: 143624213}
   wall: {fileID: 0}
+--- !u!114 &443054837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443054828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81bb723134566747b0bb8231e404bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityUI
+  statusText: {fileID: 429666390}
+  player: {fileID: 798998878}
 --- !u!1 &444448540
 GameObject:
   m_ObjectHideFlags: 0

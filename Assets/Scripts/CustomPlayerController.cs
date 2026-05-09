@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CustomPlayerController : MonoBehaviour
 {
+
+    public bool isGravityFlipped = false; 
+    public bool isFreezeEnabled = false;
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -64,16 +68,16 @@ public class CustomPlayerController : MonoBehaviour
         //gravity flip (G)
         if (Input.GetKeyDown(gravityKey))
         {
+            isGravityFlipped = !isGravityFlipped; 
             Physics.gravity = -Physics.gravity;
-            if (uiManager != null) uiManager.ToggleGravityText();
         }
 
         //change freeze/anchor state (F)
         if (Input.GetKeyDown(freezeKey))
         {
-            if (uiManager != null) uiManager.ToggleFreezeText();
+            isFreezeEnabled = !isFreezeEnabled;
         }
-
+        
         //raycast for interacting with hints (r)
         if (Input.GetKeyDown(interactKey)) 
         {
